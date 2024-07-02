@@ -1,0 +1,4 @@
+vpc_name: ansible-test
+network: 10.10.0.0/16
+aws_region: eu-central-1
+
