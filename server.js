@@ -15,20 +15,20 @@ app.get("/", (req, res) => {
 
 app.get("/convert", async (req, res) => {
   const { amount, from, to } = req.query;
+  console.log("Hello");
+  const date = "2024-07-02";
 
   const options = {
     method: "GET",
-    url: "https://api.apilayer.com/exchangerates_data/convert",
-    params: { to, from, amount },
-    headers: {
-      apikey: apiKey,
-    },
+    url: "https://api.currencyapi.com/v3/historical",
+    params: { apikey: apiKey, base_currency: from, currencies: to, date },
   };
 
   try {
     const response = await axios.request(options);
-    res.json({ convertedAmount: response.data.result });
+    res.json({ convertedAmount: response.data.data[to].value * amount });
   } catch (error) {
+    console.log(error);
     res.status(500).send("Error converting currency");
   }
 });
