@@ -19,13 +19,14 @@ for option in options:
 
 
 
-url = "http://localhost"
+
 se = ChromeService(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=se,options=chrome_options)
 
 def test_error():
+    url = "http://localhost"
     driver.get(url)
-    driver.find_element(By.CSS_SELECTOR, "div.conv > button.convert").click()
+    driver.find_element(By.XPATH,"/html/body/div/div[4]/button").click()
     try:
         result_element = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.CLASS_NAME, "res"))
@@ -42,6 +43,7 @@ def test_error():
 
 
 def test_converter_1():
+    url = "http://localhost"
     driver.get(url)
     driver.find_element(By.CLASS_NAME,"search-amount-bar").send_keys("20")
     driver.find_element(By.XPATH,"/html/body/div/select[1]/option[64]").click()
@@ -67,6 +69,7 @@ def test_converter_1():
         exit(1)
 
 def test_converter_2():
+    url = "http://localhost"
     driver.get(url)
     driver.find_element(By.CLASS_NAME,"search-amount-bar").send_keys("1")
     driver.find_element(By.XPATH,"/html/body/div/select[1]/option[38]").click()
