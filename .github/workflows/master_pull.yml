@@ -20,7 +20,11 @@ jobs:
       run: docker build --build-arg API_KEY=$API_KEY --tag currency-converter:latest .
     
     - name: Run Docker container
-      run: docker run -e API_KEY=$API_KEY -d --name mycontainer currency-converter:latest
+      run: |
+        docker run -e API_KEY=$API_KEY -d --name mycontainer -p 80:3000 currency-converter:latest
+    
+    - name: Debug container logs
+      run: docker logs mycontainer
     
     - name: Set up Python
       uses: actions/setup-python@v2
