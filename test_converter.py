@@ -25,7 +25,7 @@ for option in options:
 
 
 def test_error():
-    url = "http://localhost/"
+    url = "http://localhost"
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()),options=chrome_options)
     driver.get(url)
     driver.find_element(By.XPATH,"/html/body/div/div[4]/button").click()
@@ -45,9 +45,8 @@ def test_error():
 
 
 def test_converter_1():
-    url = "http://localhost/"
+    url = "http://localhost"
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()),options=chrome_options)
-    driver.get(url)
     driver.get(url)
     driver.find_element(By.CLASS_NAME,"search-amount-bar").send_keys("20")
     driver.find_element(By.XPATH,"/html/body/div/select[1]/option[64]").click()
@@ -73,9 +72,8 @@ def test_converter_1():
         exit(1)
 
 def test_converter_2():
-    url = "http://localhost/"
+    url = "http://localhost"
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()),options=chrome_options)
-    driver.get(url)
     driver.get(url)
     driver.find_element(By.CLASS_NAME,"search-amount-bar").send_keys("1")
     driver.find_element(By.XPATH,"/html/body/div/select[1]/option[38]").click()
@@ -101,7 +99,7 @@ def test_converter_2():
         exit(1)
 
 def test_quit():
-    url = "http://localhost/"
+    url = "http://localhost"
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()),options=chrome_options)
     driver.get(url)
     driver.quit()
