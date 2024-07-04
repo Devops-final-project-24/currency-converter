@@ -23,6 +23,7 @@ for option in options:
 # se = ChromeService(ChromeDriverManager().install())
 # driver = webdriver.Chrome(service=se,options=chrome_options)
 
+
 def test_error():
     url = "http://localhost/"
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()),options=chrome_options)
