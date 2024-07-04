@@ -1,12 +1,8 @@
-version: "3"
+version: "3.3"
 services:
   web:
     build: .
     container_name: currency-converter
     ports:
-      - "3000:3000"
-    env_file:
-      - .env
-    volumes:
-      - ".:/usr/src/app"
-      # - "/usr/src/app/node_modules"
+      - "80:3000"
+    image: roiy0987/currency-converter:latest
