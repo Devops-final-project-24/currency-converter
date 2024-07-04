@@ -18,10 +18,9 @@ for option in options:
   chrome_options.add_argument(option)
 
 
-
-
 se = ChromeService(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=se,options=chrome_options)
+
 
 def test_error():
     url = "http://localhost"
@@ -95,4 +94,5 @@ def test_converter_2():
         exit(1)
 
 def test_quit():
-	driver.quit()
+    url = "http://localhost"
+    driver.quit()
