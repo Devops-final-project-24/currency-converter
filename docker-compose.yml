@@ -1,7 +1,12 @@
 version: "3.3"
 services:
   web:
-    build: .
+    build:
+      context: .
+      args:
+        - API_KEY
+    environment:
+      - API_KEY=${API_KEY}
     container_name: currency-converter
     ports:
       - "80:3000"
