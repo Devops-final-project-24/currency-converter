@@ -12,9 +12,23 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-
+    
     - name: Build Docker image
       run: docker build --tag currency-converter:latest .
-
+    
     - name: Run Docker container
       run: docker run -d --name mycontainer currency-converter:latest
+    
+    - name: Set up Python
+      uses: action/setup-python@v2
+      with: 
+        python-version: '3.9'
+    
+    - name: Install software
+      run: sudo apt-get install -y
+    
+    - name: Install the necessary packages
+      run: pip install requests webdriver-manager selenium pytest
+       
+    - name: Run the PytTest script
+      run: pytest -rA
