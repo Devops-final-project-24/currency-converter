@@ -21,6 +21,12 @@ jobs:
     
     - name: Run Docker container
       run: docker run -e API_KEY=$API_KEY -d --name mycontainer currency-converter:latest
+
+    - name: Wait for container to start
+      run: sleep 10  
+    
+    - name: Debug container logs
+      run: docker logs mycontainer
     
     - name: Set up Python
       uses: actions/setup-python@v2
