@@ -26,6 +26,12 @@ jobs:
 
     - name: Wait for container to start
       run: sleep 10  
+
+    - name: Get container IP address
+      run: |
+        container_id=$(echo "${{ steps.run_container.outputs.container_id }}")
+        container_ip=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $container_id)
+        echo "Container IP Address: $container_ip"
     
     - name: Debug container logs
       run: docker logs mycontainer
