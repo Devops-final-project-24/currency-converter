@@ -18,6 +18,3 @@ jobs:
 
     - name: Run Docker container
       run: docker run -d --name mycontainer currency-converter:latest
-
-    - name: Push Docker image to DockerHub
-      run: docker push ${{DOCKER_USERNAME}}/currency-converter:latest
