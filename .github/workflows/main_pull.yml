@@ -1,4 +1,4 @@
-name: Upload Image to DockerHub
+name: PR Test
 
 on:
   pull_request:
