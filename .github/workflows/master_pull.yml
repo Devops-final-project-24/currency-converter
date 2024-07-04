@@ -21,17 +21,7 @@ jobs:
     
     - name: Run Docker container
       run: |
-        docker run -e API_KEY=$API_KEY -d --name mycontainer currency-converter:latest
-        echo "::set-output name=container_id::$(docker inspect --format='{{.Id}}' mycontainer)"
-
-    - name: Wait for container to start
-      run: sleep 10  
-
-    - name: Get container IP address
-      run: |
-        container_id=$(echo "${{ steps.run_container.outputs.container_id }}")
-        container_ip=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $container_id)
-        echo "Container IP Address: $container_ip"
+        docker run -e API_KEY=$API_KEY -d --name mycontainer -p 80:3000 currency-converter:latest
     
     - name: Debug container logs
       run: docker logs mycontainer
