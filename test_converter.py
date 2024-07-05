@@ -11,29 +11,20 @@ options = webdriver.ChromeOptions()
 chrome_options = Options()
 options = [
   "--headless",
-  "--disable-gpu",
   "--window-size=1920,1200",
-  "--ignore-certificate-errors",
-  "--disable-extensions",
   "--no-sandbox",
-  "--disable-dev-shm-usage"
 ]
 for option in options:
   chrome_options.add_argument(option)
 
 
-
-
-# se = ChromeService(ChromeDriverManager().install())
-# driver = webdriver.Chrome(service=se,options=chrome_options)
-
+url = "http://localhost"
+se = ChromeService(ChromeDriverManager().install())
+driver = webdriver.Chrome(service=se,options=chrome_options)
 
 def test_error():
-    url = "http://localhost"
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()),options=chrome_options)
     driver.get(url)
-    driver.implicitly_wait(10)
-    driver.find_element(By.XPATH,"/html/body/div/div[4]/button").click()
+    driver.find_element(By.CSS_SELECTOR, "div.conv > button.convert").click()
     try:
         result_element = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.CLASS_NAME, "res"))
@@ -50,10 +41,7 @@ def test_error():
 
 
 def test_converter_1():
-    url = "http://localhost"
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()),options=chrome_options)
     driver.get(url)
-    driver.implicitly_wait(10)
     driver.find_element(By.CLASS_NAME,"search-amount-bar").send_keys("20")
     driver.find_element(By.XPATH,"/html/body/div/select[1]/option[64]").click()
     driver.find_element(By.XPATH,"/html/body/div/select[2]/option[149]").click()
@@ -78,10 +66,7 @@ def test_converter_1():
         exit(1)
 
 def test_converter_2():
-    url = "http://localhost"
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()),options=chrome_options)
     driver.get(url)
-    driver.implicitly_wait(10)
     driver.find_element(By.CLASS_NAME,"search-amount-bar").send_keys("1")
     driver.find_element(By.XPATH,"/html/body/div/select[1]/option[38]").click()
     driver.find_element(By.XPATH,"/html/body/div/select[2]/option[147]").click()
@@ -106,9 +91,4 @@ def test_converter_2():
         exit(1)
 
 def test_quit():
-    url = "http://localhost"
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()),options=chrome_options)
-    driver.get(url)
-    driver.implicitly_wait(10)
-    driver.quit()
-	
+	driver.quit()
