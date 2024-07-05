@@ -1,13 +1,10 @@
-version: "3.3"
+version: "3"
 services:
   web:
-    build:
-      context: .
-      args:
-        - API_KEY
-    environment:
-      - API_KEY=${API_KEY}
+    build: .
     container_name: currency-converter
+    volumes:
+      - .:/app
+      - /app/node_modules
     ports:
-      - "80:3000"
-    image: roiy0987/currency-converter:latest
+      - "80:80"
