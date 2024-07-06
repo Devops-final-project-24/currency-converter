@@ -3,8 +3,6 @@ services:
   web:
     build: .
     container_name: currency-converter
-    volumes:
-      - .:/app
-      - /app/node_modules
     ports:
       - "80:80"
+    image: roiy0987/currency-converter
