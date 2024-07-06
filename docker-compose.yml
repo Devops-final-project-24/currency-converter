@@ -5,4 +5,4 @@ services:
     container_name: currency-converter
     ports:
       - "80:80"
-    image: roiy0987/currency-converter
+    image: roiy0987/currency-converter:latest
