@@ -20,3 +20,22 @@ jobs:
 
       - name: Push to Dockerhub
         run: docker push ${{ secrets.DOCKER_USER }}/currency-converter:latest
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy App
+        uses: appleboy/ssh-action@master
+        with: 
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.PORT }}
+          script_stop: true
+          script: |
+            cd /opt/app
+            sudo chmod 777 .env
+            sudo touch .env
+            sudo echo API_KEY=${{ secrets.API_KEY }} >> .env
+            sudo docker compose pull && sudo docker compose up -d --force-recreate

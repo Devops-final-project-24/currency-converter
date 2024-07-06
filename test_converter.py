@@ -18,7 +18,6 @@ for option in options:
   chrome_options.add_argument(option)
 
 
-
 url = "http://localhost"
 se = ChromeService(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=se,options=chrome_options)
