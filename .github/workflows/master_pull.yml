@@ -15,22 +15,22 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-    
-    # - name: Build Docker image
-    #   run: docker build --build-arg API_KEY=$API_KEY --tag currency-converter:latest .
-    
-    # - name: Run Docker container
-    #   run: |
-    #     docker run -e API_KEY=$API_KEY -d --name mycontainer -p 80:80 currency-converter:latest
-    
+
     - name: create env file
       run: |
         touch .env
         echo API_KEY=${{ secrets.API_KEY }} >> .env
-
+    
+    - name: Build Docker image
+      run: docker build --build-arg API_KEY=$API_KEY --tag currency-converter:latest .
+    
     - name: Run Docker container
       run: |
-        docker-compose up -d
+        docker run -e API_KEY=$API_KEY -d --name mycontainer -p 80:80 currency-converter:latest
+
+    # - name: Run Docker container
+    #   run: |
+    #     docker-compose up -d
     
     - name: Set up Python
       uses: actions/setup-python@v2
